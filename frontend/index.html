@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Vaultify</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- LOGIN -->
+
+    <div id="loginSection"
+         class="auth-box">
+
+        <div class="logo">
+            🔐
+        </div>
+
+        <h1>VAULTIFY</h1>
+
+        <p class="subtitle">
+            Your documents and passwords,
+            safely organized
+        </p>
+
+        <h2>Login</h2>
+
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="Email">
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Password">
+
+        <button onclick="login()">
+            LOGIN
+        </button>
+
+        <p id="loginMessage"
+           class="message"></p>
+
+        <p class="switch-text">
+            Don't have an account?
+
+            <button
+                class="link-button"
+                onclick="showSignup()">
+                Sign Up
+            </button>
+        </p>
+
+    </div>
+
+
+
+    <!-- SIGNUP -->
+
+    <div id="signupSection"
+         class="auth-box hidden">
+
+        <div class="logo">
+            👤
+        </div>
+
+        <h1>VAULTIFY</h1>
+
+        <h2>Create Account</h2>
+
+        <input
+            type="text"
+            id="signupName"
+            placeholder="Name">
+
+        <input
+            type="email"
+            id="signupEmail"
+            placeholder="Email">
+
+        <input
+            type="password"
+            id="signupPassword"
+            placeholder="Password">
+
+        <button onclick="signup()">
+            CREATE ACCOUNT
+        </button>
+
+        <p id="signupMessage"
+           class="message"></p>
+
+        <p class="switch-text">
+
+            Already have an account?
+
+            <button
+                class="link-button"
+                onclick="showLogin()">
+                Login
+            </button>
+
+        </p>
+
+    </div>
+
+
+
+    <!-- HOME -->
+
+    <div id="homeSection"
+         class="home-box hidden">
+
+        <div class="home-header">
+
+            <div>
+
+                <h1>VAULTIFY</h1>
+
+                <p id="welcomeText">
+                    Welcome
+                </p>
+
+            </div>
+
+            <button
+                class="logout-button"
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+
+        <div class="feature-container">
+
+
+            <div class="feature-card"
+                 onclick="showDocuments()">
+
+                <div class="feature-icon">
+                    📄
+                </div>
+
+                <h2>Documents</h2>
+
+                <p>
+                    Upload and manage
+                    your PDF documents
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card"
+                 onclick="showPasswords()">
+
+                <div class="feature-icon">
+                    🔐
+                </div>
+
+                <h2>Password Vault</h2>
+
+                <p>
+                    Securely manage
+                    your accounts
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DOCUMENTS -->
+
+    <div id="documentsSection"
+         class="module-box hidden">
+
+        <button
+            class="back-button"
+            onclick="showHome()">
+
+            ← Back
+
+        </button>
+
+
+        <h1>📄 Documents</h1>
+
+        <p>
+            Store and manage your PDF documents
+        </p>
+
+
+        <div class="form-box">
+
+            <h2>Upload PDF</h2>
+
+            <input
+                type="text"
+                id="documentTitle"
+                placeholder="Document title">
+
+            <input
+                type="text"
+                id="documentDescription"
+                placeholder="Description">
+
+            <select id="documentCategory">
+
+                <option value="RESUME">
+                    Resume
+                </option>
+
+                <option value="CERTIFICATE">
+                    Certificate
+                </option>
+
+                <option value="PROJECT">
+                    Project
+                </option>
+
+                <option value="TECHNICAL">
+                    Technical
+                </option>
+
+                <option value="EDUCATIONAL">
+                    Educational
+                </option>
+
+            </select>
+
+
+            <input
+                type="file"
+                id="documentFile"
+                accept=".pdf">
+
+
+            <button onclick="uploadDocument()">
+                Upload PDF
+            </button>
+
+
+            <p id="documentMessage"
+               class="message">
+            </p>
+
+        </div>
+
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="documentSearch"
+                placeholder="Search documents">
+
+            <button onclick="searchDocuments()">
+                Search
+            </button>
+
+            <button
+                class="secondary-button"
+                onclick="loadDocuments()">
+
+                Show All
+
+            </button>
+
+        </div>
+
+
+        <div class="category-buttons">
+
+            <button onclick="loadDocumentsByCategory('RESUME')">
+                Resume
+            </button>
+
+            <button onclick="loadDocumentsByCategory('CERTIFICATE')">
+                Certificates
+            </button>
+
+            <button onclick="loadDocumentsByCategory('PROJECT')">
+                Projects
+            </button>
+
+            <button onclick="loadDocumentsByCategory('TECHNICAL')">
+                Technical
+            </button>
+
+            <button onclick="loadDocumentsByCategory('EDUCATIONAL')">
+                Educational
+            </button>
+
+        </div>
+
+
+        <div id="documentsContent"
+             class="items-container">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- PASSWORDS -->
+
+    <div id="passwordsSection"
+         class="module-box hidden">
+
+        <button
+            class="back-button"
+            onclick="showHome()">
+
+            ← Back
+
+        </button>
+
+
+        <h1>🔐 Password Vault</h1>
+
+        <p>
+            Securely store your account details
+        </p>
+
+
+        <div class="form-box">
+
+            <h2>Add Account</h2>
+
+
+            <input
+                type="text"
+                id="website"
+                placeholder="Website">
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Username / Email">
+
+            <input
+                type="password"
+                id="savedPassword"
+                placeholder="Password">
+
+            <input
+                type="text"
+                id="passwordNotes"
+                placeholder="Notes">
+
+
+            <select id="passwordCategory">
+
+                <option value="INTERNSHIP">
+                    Internship
+                </option>
+
+                <option value="SOCIAL">
+                    Social
+                </option>
+
+                <option value="EDUCATION">
+                    Education
+                </option>
+
+                <option value="BANKING">
+                    Banking
+                </option>
+
+                <option value="SHOPPING">
+                    Shopping
+                </option>
+
+                <option value="OTHER">
+                    Other
+                </option>
+
+            </select>
+
+
+            <button onclick="savePassword()">
+                Save Password
+            </button>
+
+
+            <p id="passwordMessage"
+               class="message">
+            </p>
+
+        </div>
+
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="passwordSearch"
+                placeholder="Search website">
+
+            <button onclick="searchPasswords()">
+                Search
+            </button>
+
+            <button
+                class="secondary-button"
+                onclick="loadPasswords()">
+
+                Show All
+
+            </button>
+
+        </div>
+
+
+        <div class="category-buttons">
+
+            <button onclick="loadPasswordsByCategory('INTERNSHIP')">
+                Internship
+            </button>
+
+            <button onclick="loadPasswordsByCategory('SOCIAL')">
+                Social
+            </button>
+
+            <button onclick="loadPasswordsByCategory('EDUCATION')">
+                Education
+            </button>
+
+            <button onclick="loadPasswordsByCategory('BANKING')">
+                Banking
+            </button>
+
+            <button onclick="loadPasswordsByCategory('SHOPPING')">
+                Shopping
+            </button>
+
+            <button onclick="loadPasswordsByCategory('OTHER')">
+                Other
+            </button>
+
+        </div>
+
+
+        <div id="passwordsContent"
+             class="items-container">
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
