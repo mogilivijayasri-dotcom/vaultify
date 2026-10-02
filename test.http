@@ -1,0 +1,22 @@
+### Upload Resume PDF
+POST http://localhost:8080/documents/upload
+Content-Type: multipart/form-data; boundary=----VaultifyBoundary
+
+------VaultifyBoundary
+Content-Disposition: form-data; name="file"; filename="Resume.pdf"
+Content-Type: application/pdf
+
+< C:\Users\VIJAYASRI\OneDrive\Desktop\Resume.pdf
+------VaultifyBoundary
+Content-Disposition: form-data; name="title"
+
+My Resume
+------VaultifyBoundary
+Content-Disposition: form-data; name="description"
+
+My resume document
+------VaultifyBoundary
+Content-Disposition: form-data; name="category"
+
+RESUME
+------VaultifyBoundary--
